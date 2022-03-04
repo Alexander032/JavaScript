@@ -16,7 +16,7 @@ const renderProduct = (item) => {
             </div>`;
 };
 
-// сокращение функции и убираем запятую после каждого itema
+// сокращение функции и убираем запятую после каждого item
 const renderPage = list => {
     document.querySelector('.products').innerHTML = list.map(item=> renderProduct(item)).join('');
 };
