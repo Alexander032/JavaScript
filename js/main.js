@@ -1,5 +1,20 @@
 const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
 
+// let getRequest = (url, cb) => {
+//     let xhr = new XMLHttpRequest();
+//     // window.ActiveXObject -> xhr = new ActiveXObject()
+//     xhr.open("GET", url, true);
+//     xhr.onreadystatechange = () => {
+//         if(xhr.readyState === 4){
+//             if(xhr.status !== 200){
+//                 console.log('Error');
+//             } else {
+//                 cb(xhr.responseText);
+//             }
+//         }
+//     };
+//     xhr.send();
+// };
 
 class ProductsList {
     constructor(container = '.products') {
@@ -12,7 +27,13 @@ class ProductsList {
                 this.render()
             });
     }
-
+    // _fetchProducts(cb){
+    //     getRequest(`${API}/catalogData.json`, (data) => {
+    //         this.goods = JSON.parse(data);
+    //         console.log(this.goods);
+    //         cb();
+    //     })
+    // }
     _getProducts() {
         return fetch(`${API}/catalogData.json`)
             .then(result => result.json())
@@ -61,6 +82,7 @@ class basket {
     constructor(container = '.cart-block') {
         this.container = container;
         this.goods = [];//массив товаров
+       
         this._clickBasket();
         this._getBasketItem()
             .then(data => { //data - объект js
@@ -96,7 +118,7 @@ class basket {
 }
 
 class BasketItem {
-
+  
     render(product) {
         return `<div class="cart-item" data-id="${product.id_product}">
                 <div class="product-bio">
